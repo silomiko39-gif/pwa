@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Подписка на уведомления</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#111111" />
+
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "PUT_YOUR_ONESIGNAL_APP_ID_HERE",
+        notifyButton: { enable: false }
+      });
+    });
+
+    function askPush() {
+      OneSignal.push(function () {
+        OneSignal.showSlidedownPrompt();
+      });
+    }
+  </script>
+
+  <style>
+    body{font-family:Arial,system-ui;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;background:#0f1115;color:#fff}
+    .box{max-width:520px;padding:28px;border:1px solid #2a2f3a;border-radius:16px;background:#151923}
+    button{padding:12px 16px;border:0;border-radius:12px;cursor:pointer;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Включи уведомления</h1>
+    <p>Нажми кнопку и разреши уведомления, чтобы получать обновления.</p>
+    <button onclick="askPush()">Разрешить уведомления</button>
+  </div>
+</body>
+</html>
