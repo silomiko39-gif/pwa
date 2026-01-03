@@ -24,13 +24,19 @@
 }
 </script>
  <script>
-function askPush() {
-  OneSignal.push(function () {
-    OneSignal.isPushNotificationsEnabled(function(isEnabled) {
-      if (isEnabled) {
-        alert("Ты уже подписан на уведомления");
-      } else {
-        OneSignal.registerForPushNotifications();
+  window.askPush = function () {
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.isPushNotificationsEnabled(function (isEnabled) {
+        if (isEnabled) {
+          alert("Ты уже подписан на уведомления ✅");
+        } else {
+          OneSignal.registerForPushNotifications();
+        }
+      });
+    });
+  };
+</script>
 
       });
     }
