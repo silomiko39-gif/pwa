@@ -8,8 +8,11 @@
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#111111" />
 
-  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <!-- OneSignal SDK -->
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+
   <script>
+    // Инициализация OneSignal
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
       OneSignal.init({
@@ -17,27 +20,24 @@
         notifyButton: { enable: false }
       });
     });
-   
-      }
-    });
-  });
-}
-</script>
- <script>
-  window.askPush = function () {
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function () {
-      OneSignal.isPushNotificationsEnabled(function (isEnabled) {
-        if (isEnabled) {
-          alert("Ты уже подписан на уведомления ✅");
-        } else {
-          OneSignal.registerForPushNotifications();
-        }
-      });
-    });
-  };
-</script>
 
+    // Функция на кнопку
+    function askPush() {
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function () {
+        OneSignal.isPushNotificationsEnabled(function (isEnabled) {
+          if (isEnabled) {
+            alert("Ты уже подписан на уведомления ✅");
+          } else {
+            // Показывает промпт (если настроен Slide Prompt в OneSignal)
+            if (OneSignal.showSlidedownPrompt) {
+              OneSignal.showSlidedownPrompt();
+            } else {
+              // запасной вариант
+              OneSignal.registerForPushNotifications();
+            }
+          }
+        });
       });
     }
   </script>
@@ -52,9 +52,8 @@
   <div class="box">
     <h1>Включи уведомления</h1>
     <p>Нажми кнопку и разреши уведомления, чтобы получать обновления.</p>
-    <button <button onclick="askPush()">
-  Разрешить уведомления
-</button>
+    <button onclick="askPush()">Разрешить уведомления</button>
   </div>
 </body>
 </html>
+
