@@ -17,7 +17,13 @@
         notifyButton: { enable: false }
       });
     });
-    <script>
+   
+      }
+    });
+  });
+}
+</script>
+ <script>
 function askPush() {
   OneSignal.push(function () {
     OneSignal.isPushNotificationsEnabled(function(isEnabled) {
@@ -25,11 +31,6 @@ function askPush() {
         alert("Ты уже подписан на уведомления");
       } else {
         OneSignal.registerForPushNotifications();
-      }
-    });
-  });
-}
-</script>
 
       });
     }
