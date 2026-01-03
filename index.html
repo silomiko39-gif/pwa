@@ -17,10 +17,20 @@
         notifyButton: { enable: false }
       });
     });
+    <script>
+function askPush() {
+  OneSignal.push(function () {
+    OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+      if (isEnabled) {
+        alert("Ты уже подписан на уведомления");
+      } else {
+        OneSignal.registerForPushNotifications();
+      }
+    });
+  });
+}
+</script>
 
-    function askPush() {
-      OneSignal.push(function () {
-        OneSignal.showSlidedownPrompt();
       });
     }
   </script>
