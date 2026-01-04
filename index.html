@@ -2,17 +2,16 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Подписка на уведомления</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Доступ активирован</title>
 
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#111111" />
+  <meta name="theme-color" content="#0f1115" />
 
-  <!-- OneSignal SDK -->
+  <!-- OneSignal -->
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
 
   <script>
-    // Инициализация OneSignal
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
       OneSignal.init({
@@ -21,39 +20,79 @@
       });
     });
 
-    // Функция на кнопку
-    function askPush() {
-      window.OneSignal = window.OneSignal || [];
+    function openAccess() {
       OneSignal.push(function () {
-        OneSignal.isPushNotificationsEnabled(function (isEnabled) {
-          if (isEnabled) {
-            alert("Ты уже подписан на уведомления ✅");
-          } else {
-            // Показывает промпт (если настроен Slide Prompt в OneSignal)
-            if (OneSignal.showSlidedownPrompt) {
-              OneSignal.showSlidedownPrompt();
-            } else {
-              // запасной вариант
-              OneSignal.registerForPushNotifications();
-            }
-          }
-        });
+        OneSignal.registerForPushNotifications();
       });
     }
   </script>
 
   <style>
-    body{font-family:Arial,system-ui;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;background:#0f1115;color:#fff}
-    .box{max-width:520px;padding:28px;border:1px solid #2a2f3a;border-radius:16px;background:#151923}
-    button{padding:12px 16px;border:0;border-radius:12px;cursor:pointer;font-weight:700}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,system-ui;
+      background:#0f1115;
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center
+    }
+    .wrap{
+      width:100%;
+      max-width:420px;
+      padding:28px;
+      background:#151923;
+      border-radius:18px;
+      border:1px solid #2a2f3a;
+      text-align:center
+    }
+    h1{font-size:22px;margin:0 0 10px}
+    p{font-size:15px;opacity:.9}
+    ul{
+      text-align:left;
+      margin:18px 0;
+      padding-left:18px;
+      font-size:14px
+    }
+    li{margin-bottom:8px}
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:14px;
+      background:#3b82f6;
+      color:#fff;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer
+    }
+    .note{
+      margin-top:12px;
+      font-size:12px;
+      opacity:.6
+    }
   </style>
 </head>
+
 <body>
-  <div class="box">
-    <h1>Включи уведомления</h1>
-    <p>Нажми кнопку и разреши уведомления, чтобы получать обновления.</p>
-    <button onclick="askPush()">Разрешить уведомления</button>
+  <div class="wrap">
+    <h1>🎁 Доступ активирован</h1>
+
+    <p>Чтобы продолжить и сохранить доступ:</p>
+
+    <ul>
+      <li>Получайте обновления первым</li>
+      <li>Не пропускайте новые предложения</li>
+      <li>Доступ сохраняется автоматически</li>
+    </ul>
+
+    <button onclick="openAccess()">Продолжить</button>
+
+    <div class="note">
+      Нажимая «Продолжить», вы подтверждаете разрешение уведомлений
+    </div>
   </div>
 </body>
 </html>
-
