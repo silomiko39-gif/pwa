@@ -1,7 +1,7 @@
 {
   "name": "Push App",
   "short_name": "PushApp",
-  "start_url": "/pwa/app/?installed=1",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0f1115",
   "theme_color": "#0f1115",
