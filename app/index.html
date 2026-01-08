@@ -44,7 +44,7 @@
     const offer = params.get("offer") || "";
 
     document.getElementById("btnGo").addEventListener("click", () => {
-      if (!offer) { alert("Offer URL not set. Use ?offer=YOUR_URL"); return; }
+      if (!offer) { alert("Offer URL not set. Use ?offer=google.com"); return; }
 
       OneSignal.push(function () {
         if (Notification.permission === "default") {
